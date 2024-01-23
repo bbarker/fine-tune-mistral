@@ -124,13 +124,13 @@ class SupervisedDataset(Dataset):
             .filter(
                 lambda samples: filter_long_samples(samples, tokenizer),
                 batched=True,
-                batch_size=3000,
+                batch_size=100,
                 num_proc=workers,
             )
             .map(
                 lambda samples: preprocess(train_on_inputs, samples, tokenizer),
                 batched=True,
-                batch_size=3000,
+                batch_size=100,
                 num_proc=workers,
             )
         )

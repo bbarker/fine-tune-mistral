@@ -6,6 +6,8 @@ Code used to fine-tune this model: [abacaj/mistral-7b-sft](https://huggingface.c
 
 # How to run
 
+## General instructions on Linux
+
 Install dependencies:
 ```
 python -m venv env \
@@ -23,6 +25,24 @@ Run training code:
 ```
 torchrun --nnodes=1 --nproc-per-node=<REPLACE_WITH_NUMBER_OF_GPUS> train.py
 ```
+
+## Nix
+
+You'll need a few experimental features enabled, e.g.:
+
+```
+$ cat ~/.config/nix/nix.conf 
+experimental-features = nix-command flakes configurable-impure-env
+
+```
+
+You can initiate the environment (this can take a while - for example, CUDA download is 4GB+):
+
+```
+NIXPKGS_ALLOW_UNFREE=1 nix develop -L --impure
+```
+
+, then proceed with the huggfing face and torch steps above.
 
 # Tips
 
